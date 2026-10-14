@@ -1,0 +1,2 @@
+description = "Review a requested diff for concrete correctness, security, compatibility, and test gaps."
+prompt = "Use the code-review skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

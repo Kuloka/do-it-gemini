@@ -1,0 +1,2 @@
+description = "Optimize a measured performance target through reproducible benchmarks and regression gates."
+prompt = "Use the performance-goal skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

@@ -1,0 +1,20 @@
+{
+    "name":  "developer",
+    "version":  "1.0.0",
+    "description":  "Requirements, planning, implementation and pack maintenance workflows.",
+    "skills":  [
+                   "plan",
+                   "deep-interview",
+                   "ralplan",
+                   "autopilot",
+                   "ultragoal",
+                   "design",
+                   "wiki",
+                   "skill-creator",
+                   "skill-manager",
+                   "doctor",
+                   "cancel",
+                   "team"
+               ],
+    "instructions":  "Use repository conventions and existing user authorization. Keep durable task evidence in data/workflows. Load only the skill relevant to the current task. Check actual Gemini capabilities before native installation or delegation."
+}

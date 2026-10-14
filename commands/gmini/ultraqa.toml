@@ -1,0 +1,2 @@
+description = "Exercise runnable behavior with adversarial scenarios, bounded fixes, and cleanup evidence."
+prompt = "Use the ultraqa skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

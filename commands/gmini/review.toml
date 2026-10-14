@@ -1,0 +1,2 @@
+description = "Review code with severity-rated findings"
+prompt = "Use the code-review skill for: {{args}}. Report concrete findings and validation limits."

@@ -1,0 +1,2 @@
+description = "Turn a materially ambiguous idea into a bounded, testable specification through focused questions."
+prompt = "Use the deep-interview skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

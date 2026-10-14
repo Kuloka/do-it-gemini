@@ -1,0 +1,2 @@
+description = "Inspect, validate, and manage skill sources without blindly executing downloaded content."
+prompt = "Use the skill-manager skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

@@ -1,0 +1,2 @@
+description = "Deliver an authorized task through requirements, reviewed planning, implementation, and verification."
+prompt = "Use the autopilot skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

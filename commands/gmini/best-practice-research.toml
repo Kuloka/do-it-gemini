@@ -1,0 +1,2 @@
+description = "Answer version-aware technical questions using bounded official and upstream evidence."
+prompt = "Use the best-practice-research skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

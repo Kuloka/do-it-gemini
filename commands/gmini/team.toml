@@ -1,0 +1,2 @@
+description = "Coordinate bounded implementation lanes when real Gemini delegation is available, with an honest solo fallback."
+prompt = "Use the team skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

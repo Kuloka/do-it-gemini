@@ -1,0 +1,2 @@
+description = "Create or adapt a Gemini skill with precise discovery metadata, practical steps, and real tool boundaries."
+prompt = "Use the skill-creator skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

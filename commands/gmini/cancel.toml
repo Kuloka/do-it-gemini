@@ -1,0 +1,2 @@
+description = "Stop the current task safely while preserving resumable work and unrelated sessions."
+prompt = "Use the cancel skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

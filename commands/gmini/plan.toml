@@ -1,0 +1,2 @@
+description = "Create or review a concise implementation plan grounded in repository evidence."
+prompt = "Use the plan skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

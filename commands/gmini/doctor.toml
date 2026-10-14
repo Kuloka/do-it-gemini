@@ -1,0 +1,2 @@
+description = "Diagnose this Gemini pack, CLI availability, configuration, and skill/plugin discovery."
+prompt = "Use the doctor skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

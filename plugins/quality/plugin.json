@@ -1,0 +1,12 @@
+{
+    "name":  "quality",
+    "version":  "1.0.0",
+    "description":  "Evidence-backed review, behavior-preserving cleanup, dynamic QA and measured optimization.",
+    "skills":  [
+                   "code-review",
+                   "ai-slop-cleaner",
+                   "ultraqa",
+                   "performance-goal"
+               ],
+    "instructions":  "Require concrete behavior or measurement evidence before claiming success. Preserve unrelated work. Use isolated dynamic probes and label solo self-review honestly. Do not turn a failing or skipped check into a passing result."
+}

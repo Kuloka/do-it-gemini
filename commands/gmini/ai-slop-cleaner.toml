@@ -1,0 +1,2 @@
+description = "Remove unnecessary code and duplication while preserving verified behavior."
+prompt = "Use the ai-slop-cleaner skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

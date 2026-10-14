@@ -1,0 +1,10 @@
+node_modules/
+data/*
+!data/.gitkeep
+.gemini/
+.env
+*.tgz
+.omx/
+installer-site/
+installer-site-deploy.tar.gz
+.agents/skills/

@@ -1,0 +1,2 @@
+description = "Trace repository behavior and rank evidence-backed explanations without editing code."
+prompt = "Use the analyze skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

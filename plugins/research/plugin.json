@@ -1,0 +1,10 @@
+{
+    "name":  "research",
+    "version":  "1.0.0",
+    "description":  "Repository investigation and version-aware official-source research.",
+    "skills":  [
+                   "analyze",
+                   "best-practice-research"
+               ],
+    "instructions":  "Separate evidence, inference and unknowns. Research and analysis alone do not authorize implementation. Cite actual local references or direct source URLs and disclose unavailable tools."
+}

@@ -1,0 +1,2 @@
+description = "Maintain a small searchable Markdown project knowledge base with evidence and provenance."
+prompt = "Use the wiki skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

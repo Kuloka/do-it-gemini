@@ -1,0 +1,2 @@
+description = "Execute a durable multi-step plan with explicit criteria, checkpoints, and resume evidence."
+prompt = "Use the ultragoal skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"
