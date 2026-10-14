@@ -70,6 +70,7 @@ or available in your PATH. In a source checkout, use `gmini.cmd` instead.
 | `ask "message"` | Send one request and save the completed conversation turn |
 | `native` | Open the selected native CLI interactively in the current console |
 | `setup` | Prepare data, workspace context, skills, and Gemini custom commands |
+| `setup --global` | Also install skills in the user folders of Gemini and Antigravity |
 | `setup --install-cli` | Also install legacy Gemini CLI 0.63.0 locally; supported legacy access is required |
 | `bootstrap` | Prepare the workspace, install Antigravity on Windows if needed, and open chat |
 | `doctor` | Report data paths, skill/plugin counts, and discovered providers |
@@ -95,6 +96,7 @@ interactive terminal.
 | `--skill NAME` | Explicitly select an enabled skill for a request or chat |
 | `--help` | Show help |
 | `--install-cli` | Install legacy Gemini CLI when used with `setup` |
+| `--global` | Install native skills globally when used with `setup` |
 
 `auto` prefers discovered Antigravity, then legacy Gemini CLI, then API access.
 Bootstrap uses API mode directly when `GEMINI_API_KEY` is set. Use `--provider agy`
@@ -115,7 +117,10 @@ Gemini CLI JavaScript entrypoint, and `GMINI_DATA_DIR` overrides the data direct
 | `/session NAME` | Switch to or continue a session |
 | `/new [NAME]` | Create a separate session, optionally with a chosen name |
 | `/history` | Print the current conversation history |
-| `/model NAME` | Change the model and save the choice |
+| `/model` or `/ model` | Show available native models and enter a model ID |
+| `/model NAME` or `/ model NAME` | Change the model and save the choice |
+| `/model list` | Show the current model and available Antigravity models |
+| `/model default` | Reset to the provider's default model |
 | `/exit` or `/quit` | Leave the mini chat |
 
 Write `$plan task description` or `$analyze question` in a message to explicitly
@@ -160,6 +165,16 @@ account's access, usage limits, and billing. The full wrapper conversation is se
 with every request; use `/new` to keep unrelated tasks and long histories separate.
 
 ## Storage and your own project
+
+The terminal interface is in English. Model responses follow your request's language.
+Bootstrap also installs native skills into both `%USERPROFILE%\.gemini\skills`
+and `%USERPROFILE%\.gemini\antigravity-cli\skills`. They are available when you
+launch Gemini or Antigravity separately. Existing modified skills are preserved;
+conflicts stop installation before replacing files. To install explicitly:
+
+```cmd
+npx --yes --package=do-it-gemini@latest -- gmini setup --global
+```
 
 For npm/npx on Windows:
 

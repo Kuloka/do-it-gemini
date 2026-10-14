@@ -1,6 +1,6 @@
 {
   "name": "do-it-gemini",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gemini-native engineering skills adapted from Codex and OMX workflows",
   "contextFileName": "GEMINI.md"
 }

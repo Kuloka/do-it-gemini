@@ -1,6 +1,6 @@
 {
   "name": "do-it-gemini",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gemini skill packs, plugins and a persistent CMD mini chat",
   "type": "module",
   "bin": { "do-it-gemini": "bin/gmini.js", "gmini": "bin/gmini.js" },
@@ -8,5 +8,5 @@
   "engines": { "node": ">=20" },
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/Kuloka/do-it-gemini.git" },
-  "files": ["bin", "src", "skills", "plugins", "commands", "scripts", "tests", "docs", "GEMINI.md", "gemini-extension.json", "README.md", "PUBLISH.md", "do-it-gemini.cmd", "gmini.cmd", "setup.cmd"]
+  "files": ["bin", "src", "skills", "plugins", "commands", "scripts", "tests", "docs", "assets", "GEMINI.md", "gemini-extension.json", "README.md", "PUBLISH.md", "do-it-gemini.cmd", "gmini.cmd", "setup.cmd"]
 }

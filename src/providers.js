@@ -61,8 +61,8 @@ export function runExecutable(executable, args, { cwd, input, interactive = fals
     child.on('error', error => { clearTimeout(timer); reject(error); });
     child.on('close', code => {
       clearTimeout(timer);
-      if (timedOut) reject(new Error('Gemini CLI: время ожидания истекло.'));
-      else if (code !== 0) reject(new Error(`Gemini CLI завершился с кодом ${code}. ${stderr.slice(-2000)}`));
+      if (timedOut) reject(new Error('Provider request timed out.'));
+      else if (code !== 0) reject(new Error(`Provider exited with code ${code}. ${stderr.slice(-2000)}`));
       else resolve(stdout);
     });
     if (!interactive) child.stdin.end(input || '');
@@ -94,15 +94,15 @@ export async function cliReply({ cliPath, cwd, context, messages, model, timeout
   if (model) args.push('--model', model);
   const output = await runNode(cliPath, args, { cwd, timeout, input: `INSTRUCTIONS:\n${context}\n\nCONVERSATION:\n${transcript}` });
   let parsed;
-  try { parsed = JSON.parse(output); } catch { throw new Error('Gemini CLI вернул некорректный JSON. Проверь версию CLI и авторизацию через gmini native.'); }
-  if (parsed.error) throw new Error(parsed.error.message || 'Ошибка Gemini CLI');
-  if (typeof parsed.response !== 'string' || !parsed.response.trim()) throw new Error('Gemini CLI вернул пустой ответ.');
+  try { parsed = JSON.parse(output); } catch { throw new Error('Gemini CLI returned invalid JSON. Check its version and sign in using gmini native.'); }
+  if (parsed.error) throw new Error(parsed.error.message || 'Gemini CLI error');
+  if (typeof parsed.response !== 'string' || !parsed.response.trim()) throw new Error('Gemini CLI returned an empty response.');
   return parsed.response;
 }
 
 export async function apiReply({ context, messages, model = 'gemini-3.8-flash', apiKey = process.env.GEMINI_API_KEY, fetchImpl = fetch, timeout = 120000 }) {
-  if (!apiKey) throw new Error('Задай GEMINI_API_KEY или используй --provider cli. Ключ не сохраняется в data.');
-  if (!/^[a-zA-Z0-9._-]+$/.test(model)) throw new Error('Некорректное имя модели.');
+  if (!apiKey) throw new Error('Set GEMINI_API_KEY or use a native provider. API keys are not saved in data.');
+  if (!/^[a-zA-Z0-9._-]+$/.test(model)) throw new Error('Invalid model ID.');
   const response = await fetchImpl(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
     signal: AbortSignal.timeout(timeout),
@@ -110,10 +110,10 @@ export async function apiReply({ context, messages, model = 'gemini-3.8-flash', 
   });
   let payload;
   try { payload = await response.json(); }
-  catch { throw new Error(`Gemini API ${response.status}: сервер вернул ответ без корректного JSON`); }
-  if (!response.ok) throw new Error(`Gemini API ${response.status}: ${payload.error?.message || 'ошибка запроса'}`);
+  catch { throw new Error(`Gemini API ${response.status}: server returned invalid JSON`); }
+  if (!response.ok) throw new Error(`Gemini API ${response.status}: ${payload.error?.message || 'request failed'}`);
   const text = payload.candidates?.[0]?.content?.parts?.filter(p => !p.thought).map(p => p.text || '').join('');
-  if (!text?.trim()) throw new Error(`Gemini не вернул текст (${payload.promptFeedback?.blockReason || payload.candidates?.[0]?.finishReason || 'empty'}).`);
+  if (!text?.trim()) throw new Error(`Gemini returned no text (${payload.promptFeedback?.blockReason || payload.candidates?.[0]?.finishReason || 'empty'}).`);
   return text;
 }
 
@@ -121,5 +121,5 @@ export async function npmScript() {
   const candidates = [path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js')];
   for (const dir of (process.env.PATH || '').split(path.delimiter)) candidates.push(path.join(dir, 'node_modules', 'npm', 'bin', 'npm-cli.js'));
   for (const candidate of candidates) { try { await readFile(candidate); return candidate; } catch {} }
-  throw new Error('Не найден npm-cli.js. Установи Node.js с npm.');
+  throw new Error('npm-cli.js was not found. Install Node.js with npm.');
 }

@@ -3,7 +3,7 @@ import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 
 export function safeName(name) {
-  if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$/.test(name)) throw new Error('Имя должно содержать только буквы, цифры, _ и - (до 80 символов).');
+  if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$/.test(name)) throw new Error('Names must contain only letters, digits, _ and - (up to 80 characters).');
   return name;
 }
 

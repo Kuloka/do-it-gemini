@@ -82,6 +82,14 @@ require `npm link` and do not depend on PowerShell ExecutionPolicy.
 
 ## Mini chat
 
+All wrapper prompts, status messages and errors are in English. `/model` (also
+`/ model`) shows available Antigravity models and prompts for an ID. Use
+`/model ID` to switch immediately or `/model default` to reset. Selection persists.
+
+Bootstrap installs native skills globally in `~/.gemini/skills` for Gemini and
+`~/.gemini/antigravity-cli/skills` for Antigravity. `setup --global` performs the
+same native installation explicitly. Conflicting user skills are not overwritten.
+
 For an npm installation, use `npx --yes --package=do-it-gemini@latest gmini` followed
 by the desired subcommand. In a source checkout, use the local launcher:
 
