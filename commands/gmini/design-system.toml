@@ -1,0 +1,2 @@
+description = "Define or improve coherent design tokens and reusable UI components while preserving existing product conventions, accessibility, and responsive states."
+prompt = "Use the design-system skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

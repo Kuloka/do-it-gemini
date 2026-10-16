@@ -24,11 +24,11 @@ async function fixture(t) {
     plugins: new Map([['developer', { skills: ['plan'] }], ['shared', { skills: ['plan'] }]]),
   };
   const config = { plugins: ['developer', 'shared'] };
-  const directories = [path.join(home, '.gemini', 'skills'), path.join(home, '.gemini', 'antigravity-cli', 'skills')];
+  const directories = [path.join(home, '.gemini', 'skills'), path.join(home, '.gemini', 'antigravity-cli', 'skills'), path.join(home, '.gemini', 'config', 'skills')];
   return { home, source, catalog, config, directories };
 }
 
-test('global installation copies complete resources into both native roots without changing auth or config', async t => {
+test('global installation copies complete resources into all three native roots without changing auth or config', async t => {
   const f = await fixture(t);
   await mkdir(path.join(f.home, '.gemini'));
   const credentials = path.join(f.home, '.gemini', 'oauth_creds.json');

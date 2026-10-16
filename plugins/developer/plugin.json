@@ -1,6 +1,6 @@
 {
     "name":  "developer",
-    "version":  "1.0.0",
+    "version":  "1.1.0",
     "description":  "Requirements, planning, implementation and pack maintenance workflows.",
     "skills":  [
                    "plan",
@@ -9,6 +9,9 @@
                    "autopilot",
                    "ultragoal",
                    "design",
+                   "frontend-design",
+                   "design-system",
+                   "design-review",
                    "wiki",
                    "skill-creator",
                    "skill-manager",

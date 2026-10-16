@@ -1,4 +1,4 @@
-import { readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { safeName } from './store.js';
 
@@ -46,5 +46,23 @@ export async function buildContext(root, catalog, config, selected = []) {
   const packs = config.plugins.map(name => catalog.plugins.get(name).instructions).join('\n');
   // Headless/API chats cannot call native activate_skill, so load enabled skills there.
   const loaded = chosen.length ? chosen.map(name => allowed.get(name)) : available;
-  return `${base}\n\nPlugin guidance:\n${packs}\n\nAvailable skills:\n${available.map(s => `${s.name}: ${s.description}`).join('\n')}\n\n${loaded.map(s => `Skill ${s.name}:\n${s.text}`).join('\n\n')}\n\nExplicit skills for this turn: ${chosen.join(', ') || 'choose only relevant skills'}`;
+  const bodies = await Promise.all(loaded.map(async skill => {
+    const bundle = path.dirname(skill.file);
+    const resources = [];
+    // Explicit selection also works in API-only chat, which cannot read resources.
+    // Automatic native selection keeps references lazy and supplies their real base.
+    if (chosen.length) {
+      const basePath = await realpath(bundle);
+      const prose = skill.text.replace(/```[\s\S]*?```/g, '');
+      const links = [...new Set([...prose.matchAll(/\]\(([^)]+\.md)(?:#[^)]*)?\)/g)].map(match => match[1]))];
+      for (const link of links.filter(link => !/^(?:https?:|#)/.test(link))) {
+        const target = await realpath(path.resolve(bundle, decodeURIComponent(link)));
+        const relative = path.relative(basePath, target);
+        if (relative.startsWith(`..${path.sep}`) || relative === '..' || path.isAbsolute(relative)) throw new Error(`Skill resource leaves its bundle: ${link}`);
+        resources.push(`Resource ${link}:\n${await readFile(target, 'utf8')}`);
+      }
+    }
+    return `Skill ${skill.name}:\nbundle: ${bundle}\n${skill.text}${resources.length ? `\n\n${resources.join('\n\n')}` : ''}`;
+  }));
+  return `${base}\n\nPlugin guidance:\n${packs}\n\nAvailable skills:\n${available.map(s => `${s.name}: ${s.description}`).join('\n')}\n\n${bodies.join('\n\n')}\n\nExplicit skills for this turn: ${chosen.join(', ') || 'choose only relevant skills'}`;
 }

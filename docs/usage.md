@@ -1,7 +1,7 @@
 # do-it-gemini
 
-18 Gemini-compatible skills, three plugin packs, and a persistent mini chat for
-Windows CMD. Version 0.1.1 supports Antigravity CLI (`agy`), Google's successor for
+21 Gemini-compatible skills, four plugin packs, and a persistent mini chat for
+Windows CMD. Version 0.2.0 supports Antigravity CLI (`agy`), Google's successor for
 personal Gemini CLI access, as well as eligible Gemini CLI and API installations.
 The skills adapt practical Codex/oh-my-codex workflows to Gemini rather than simply
 renaming them. Codex goal APIs, OMX runtime, and tmux assumptions are replaced
@@ -86,9 +86,13 @@ All wrapper prompts, status messages and errors are in English. `/model` (also
 `/ model`) shows available Antigravity models and prompts for an ID. Use
 `/model ID` to switch immediately or `/model default` to reset. Selection persists.
 
-Bootstrap installs native skills globally in `~/.gemini/skills` for Gemini and
-`~/.gemini/antigravity-cli/skills` for Antigravity. `setup --global` performs the
-same native installation explicitly. Conflicting user skills are not overwritten.
+Bootstrap installs complete native skill bundles globally in `~/.gemini/skills`
+for Gemini, `~/.gemini/antigravity-cli/skills` for Antigravity CLI, and
+`~/.gemini/config/skills` for Antigravity App/IDE. `setup --global` performs the
+same installation explicitly. Unchanged managed files and recognized 0.1.2
+skills upgrade safely; conflicting user edits are preserved and stop installation.
+Restart a native session after updating. Design workflows include `design`,
+`frontend-design`, `design-system` and `design-review`; see the README for examples.
 
 For an npm installation, use `npx --yes --package=do-it-gemini@latest gmini` followed
 by the desired subcommand. In a source checkout, use the local launcher:

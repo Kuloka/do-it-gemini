@@ -1,0 +1,2 @@
+description = "Build or redesign distinctive, usable web interfaces with working interactions, deliberate visual hierarchy, responsive behavior, and rendered verification."
+prompt = "Use the frontend-design skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"

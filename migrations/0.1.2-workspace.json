@@ -1,0 +1,24 @@
+{
+  "version": "0.1.2",
+  "commit": "bc042d4b59fa35082e7b04903491d19fba8f272e",
+  "files": {
+    ".gemini/commands/gmini/ai-slop-cleaner.toml": "9631b3ee7916b98ae1b54afc77c60897463db89d95425088978ccc8741d32b9d",
+    ".gemini/commands/gmini/analyze.toml": "321f41d75e2b5f6e9cbf67e45bf06a5f7186f9bd2aec39bf87a1aca048c9cfca",
+    ".gemini/commands/gmini/autopilot.toml": "b92d78bf63ea2fd2a752642a90000dfca1b49e63274ec4e54e3f61504d35a1db",
+    ".gemini/commands/gmini/best-practice-research.toml": "e26126572e016954e52b8104662e091483f129b1dde1c9e037ce2ba7fa3c13d7",
+    ".gemini/commands/gmini/cancel.toml": "25982f3b02b08fa1aafd2b3595aee3d3a9e3ef382989b9d3d315474286212243",
+    ".gemini/commands/gmini/code-review.toml": "466fdb79f73ca1fd547354faef01fa39ecf1fc6ae08253eae2421c0049f37699",
+    ".gemini/commands/gmini/deep-interview.toml": "820271ac7b601938fbe59110e6f68574f263c14718b299671827d15513bd1c3c",
+    ".gemini/commands/gmini/design.toml": "5d1f4e1fd7cb15c595cbc4cc1709397730e6b50b39a74bf860fd2c1aa63ffd4f",
+    ".gemini/commands/gmini/doctor.toml": "9f28d6645d5507bad17609c994cce1dc5db07cf24a7a380c5c7e0398f7d33ba7",
+    ".gemini/commands/gmini/performance-goal.toml": "216c88ebcd48513f3ea059e4309cbe93298e8478cec6cf8a8992c3ca35bbc4ed",
+    ".gemini/commands/gmini/plan.toml": "49051380db6699fe5ca1c39a9879fea712a8498737e41799e20b25428b90613b",
+    ".gemini/commands/gmini/ralplan.toml": "a1c0cc1f6fec84432735f8e11788fe03ae52d09a23557676fe3dcecf809e0b7b",
+    ".gemini/commands/gmini/skill-creator.toml": "1cbcb01d6f1ec33faae94bb9fdb543d94cd339a692c14db72b48927541c9fcdc",
+    ".gemini/commands/gmini/skill-manager.toml": "0f5b5b8e3e3d64f36db04966bc6bf13746962ce2ff33a393d7e43c619d60bd55",
+    ".gemini/commands/gmini/team.toml": "373d8c0d8d3283cdf9cafe13aa03503c17fd8366aff1f0ef1b48df7319ce5bb6",
+    ".gemini/commands/gmini/ultragoal.toml": "e2914bbf9ab7d9edfb69fca8c48596ca1699c100a0fd0f68b164c1a0b712118b",
+    ".gemini/commands/gmini/ultraqa.toml": "ae4ff97ab3e0b5b11a3f0b5eb9500314801414583a5d466556e16837ab5e45a4",
+    ".gemini/commands/gmini/wiki.toml": "2c7ed8305c591c6d4194ff19c201a289ff50fff09eb0e4a88f9a4fc31a4b1938"
+  }
+}

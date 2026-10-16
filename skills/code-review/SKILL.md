@@ -26,6 +26,34 @@ Check compatibility assumptions against manifests and actual usage.
 Check that tests exercise the changed behavior rather than mirror implementation.
 Prefer a reproducible failure or precise code path over speculative warnings.
 
+For each important path, follow the concrete trigger through callers and state updates
+to the visible result or persistent side effect. Read the previous implementation
+where needed to establish whether a defect was introduced. Check partial failure,
+retry, cleanup, and cancellation only where the code supports those paths. Distinguish
+new regressions from existing defects; describe existing issues separately when useful.
+
+## Frontend and design pass
+
+For UI changes, read the design contract or supplied reference and inspect the
+affected component, styling, state owner, and caller together. Prioritize:
+
+- Semantics and input: names and labels, appropriate buttons/links, form validation,
+  keyboard activation, visible focus, modal focus behavior, and status feedback.
+- Responsive behavior: fixed dimensions, overflow, wrapping, long/localized content,
+  image sizes, sticky regions, and overlays near actual layout breakpoints.
+- Data states: loading, empty, error, success, stale responses, double submission,
+  and state reset on navigation or changing the selected object.
+- Design fidelity: hierarchy, tokens, typography, spacing, contrast, and complete
+  interaction states against the agreed contract, not the reviewer's personal taste.
+- Runtime cost: unnecessary request waterfalls, layout shifts, missing image dimensions,
+  and expensive work in frequently repeated rendering paths where evidence supports it.
+
+Use an existing browser or component harness when available. Reproduce the affected
+journey at relevant widths and inspect browser errors when running the UI. If no
+browser is available, state that visual and interaction behavior was inspected only
+in source. An automated accessibility pass does not establish complete accessibility.
+Use `ultraqa` for a broader dynamic investigation when that scope is authorized.
+
 ## Architecture pass
 
 Check whether the change follows established ownership and dependency patterns.
@@ -45,6 +73,11 @@ Label these self-review; they do not constitute independent approval.
 Order actionable findings by severity and include path, line, trigger, impact, and fix.
 Use Critical, High, Medium, and Low only where the consequence justifies the label.
 Include checks performed, tests inspected or run, and unresolved uncertainty.
+Give file/line references to the smallest useful location. A finding should explain
+the triggering condition, concrete consequence, evidence, and a bounded remedy.
+Do not present hypothetical danger without a reachable path or known contract.
+Separate blocking defects from optional improvements, and avoid repeating one root
+cause as several findings. Say when a proposed fix has not been tested.
 If no concrete findings remain, say so while stating the review coverage.
 Do not claim exhaustive safety from a small review.
 Write `data/workflows/<slug>/code-review.md` only when durable evidence is requested.

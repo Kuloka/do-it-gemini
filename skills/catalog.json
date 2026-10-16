@@ -1,92 +1,107 @@
 [
-    {
-        "name":  "ai-slop-cleaner",
-        "description":  "Remove unnecessary code and duplication while preserving verified behavior.",
-        "source":  "~/.codex/skills/ai-slop-cleaner/SKILL.md"
-    },
-    {
-        "name":  "analyze",
-        "description":  "Trace repository behavior and rank evidence-backed explanations without editing code.",
-        "source":  "~/.codex/skills/analyze/SKILL.md"
-    },
-    {
-        "name":  "autopilot",
-        "description":  "Deliver an authorized task through requirements, reviewed planning, implementation, and verification.",
-        "source":  "~/.codex/skills/autopilot/SKILL.md"
-    },
-    {
-        "name":  "best-practice-research",
-        "description":  "Answer version-aware technical questions using bounded official and upstream evidence.",
-        "source":  "~/.codex/skills/best-practice-research/SKILL.md"
-    },
-    {
-        "name":  "cancel",
-        "description":  "Stop the current task safely while preserving resumable work and unrelated sessions.",
-        "source":  "~/.codex/skills/cancel/SKILL.md"
-    },
-    {
-        "name":  "code-review",
-        "description":  "Review a requested diff for concrete correctness, security, compatibility, and test gaps.",
-        "source":  "~/.codex/skills/code-review/SKILL.md"
-    },
-    {
-        "name":  "deep-interview",
-        "description":  "Turn a materially ambiguous idea into a bounded, testable specification through focused questions.",
-        "source":  "~/.codex/skills/deep-interview/SKILL.md"
-    },
-    {
-        "name":  "design",
-        "description":  "Create or refresh a repository design contract from product, UI, and accessibility evidence.",
-        "source":  "~/.codex/skills/design/SKILL.md"
-    },
-    {
-        "name":  "doctor",
-        "description":  "Diagnose this Gemini pack, CLI availability, configuration, and skill/plugin discovery.",
-        "source":  "~/.codex/skills/doctor/SKILL.md"
-    },
-    {
-        "name":  "performance-goal",
-        "description":  "Optimize a measured performance target through reproducible benchmarks and regression gates.",
-        "source":  "~/.codex/skills/performance-goal/SKILL.md"
-    },
-    {
-        "name":  "plan",
-        "description":  "Create or review a concise implementation plan grounded in repository evidence.",
-        "source":  "~/.codex/skills/plan/SKILL.md"
-    },
-    {
-        "name":  "ralplan",
-        "description":  "Review a concrete plan through planning, architecture, and critical validation passes.",
-        "source":  "~/.codex/skills/ralplan/SKILL.md"
-    },
-    {
-        "name":  "skill-creator",
-        "description":  "Create or adapt a Gemini skill with precise discovery metadata, practical steps, and real tool boundaries.",
-        "source":  "~/.codex/skills/.system/skill-creator/SKILL.md"
-    },
-    {
-        "name":  "skill-manager",
-        "description":  "Inspect, validate, and manage skill sources without blindly executing downloaded content.",
-        "source":  "~/.codex/skills/.system/skill-installer/SKILL.md"
-    },
-    {
-        "name":  "team",
-        "description":  "Coordinate bounded implementation lanes when real Gemini delegation is available, with an honest solo fallback.",
-        "source":  "~/.codex/skills/team/SKILL.md"
-    },
-    {
-        "name":  "ultragoal",
-        "description":  "Execute a durable multi-step plan with explicit criteria, checkpoints, and resume evidence.",
-        "source":  "~/.codex/skills/ultragoal/SKILL.md"
-    },
-    {
-        "name":  "ultraqa",
-        "description":  "Exercise runnable behavior with adversarial scenarios, bounded fixes, and cleanup evidence.",
-        "source":  "~/.codex/skills/ultraqa/SKILL.md"
-    },
-    {
-        "name":  "wiki",
-        "description":  "Maintain a small searchable Markdown project knowledge base with evidence and provenance.",
-        "source":  "~/.codex/skills/wiki/SKILL.md"
-    }
+  {
+    "name": "ai-slop-cleaner",
+    "description": "Remove unnecessary code and duplication while preserving verified behavior.",
+    "source": "~/.codex/skills/ai-slop-cleaner/SKILL.md"
+  },
+  {
+    "name": "analyze",
+    "description": "Trace repository behavior and rank evidence-backed explanations without editing code.",
+    "source": "~/.codex/skills/analyze/SKILL.md"
+  },
+  {
+    "name": "autopilot",
+    "description": "Deliver an authorized task through requirements, reviewed planning, implementation, and verification.",
+    "source": "~/.codex/skills/autopilot/SKILL.md"
+  },
+  {
+    "name": "best-practice-research",
+    "description": "Answer version-aware technical questions using bounded official and upstream evidence.",
+    "source": "~/.codex/skills/best-practice-research/SKILL.md"
+  },
+  {
+    "name": "cancel",
+    "description": "Stop the current task safely while preserving resumable work and unrelated sessions.",
+    "source": "~/.codex/skills/cancel/SKILL.md"
+  },
+  {
+    "name": "code-review",
+    "description": "Review a requested diff for concrete correctness, security, compatibility, and test gaps.",
+    "source": "~/.codex/skills/code-review/SKILL.md"
+  },
+  {
+    "name": "deep-interview",
+    "description": "Turn a materially ambiguous idea into a bounded, testable specification through focused questions.",
+    "source": "~/.codex/skills/deep-interview/SKILL.md"
+  },
+  {
+    "name": "design",
+    "description": "Shape a product or interface direction and turn it into an actionable design contract, implementation brief, and visual acceptance criteria.",
+    "source": "~/.codex/skills/design/SKILL.md"
+  },
+  {
+    "name": "design-review",
+    "description": "Critique an interface or screenshot against its task and design direction, with ranked visual, responsive, interaction, and accessibility findings supported by evidence.",
+    "source": "do-it-gemini original workflow, informed by official Gemini/Antigravity documentation and primary accessibility references"
+  },
+  {
+    "name": "design-system",
+    "description": "Define or improve coherent design tokens and reusable UI components while preserving existing product conventions, accessibility, and responsive states.",
+    "source": "do-it-gemini original workflow, informed by official Gemini/Antigravity documentation and primary accessibility references"
+  },
+  {
+    "name": "doctor",
+    "description": "Diagnose this Gemini pack, CLI availability, configuration, and skill/plugin discovery.",
+    "source": "~/.codex/skills/doctor/SKILL.md"
+  },
+  {
+    "name": "frontend-design",
+    "description": "Build or redesign distinctive, usable web interfaces with working interactions, deliberate visual hierarchy, responsive behavior, and rendered verification.",
+    "source": "do-it-gemini original workflow, informed by official Gemini/Antigravity documentation and primary accessibility references"
+  },
+  {
+    "name": "performance-goal",
+    "description": "Optimize a measured performance target through reproducible benchmarks and regression gates.",
+    "source": "~/.codex/skills/performance-goal/SKILL.md"
+  },
+  {
+    "name": "plan",
+    "description": "Create or review a concise implementation plan grounded in repository evidence.",
+    "source": "~/.codex/skills/plan/SKILL.md"
+  },
+  {
+    "name": "ralplan",
+    "description": "Review a concrete plan through planning, architecture, and critical validation passes.",
+    "source": "~/.codex/skills/ralplan/SKILL.md"
+  },
+  {
+    "name": "skill-creator",
+    "description": "Create or adapt a Gemini skill with precise discovery metadata, practical steps, and real tool boundaries.",
+    "source": "~/.codex/skills/.system/skill-creator/SKILL.md"
+  },
+  {
+    "name": "skill-manager",
+    "description": "Inspect, validate, and manage skill sources without blindly executing downloaded content.",
+    "source": "~/.codex/skills/.system/skill-installer/SKILL.md"
+  },
+  {
+    "name": "team",
+    "description": "Coordinate bounded implementation lanes when real Gemini delegation is available, with an honest solo fallback.",
+    "source": "~/.codex/skills/team/SKILL.md"
+  },
+  {
+    "name": "ultragoal",
+    "description": "Execute a durable multi-step plan with explicit criteria, checkpoints, and resume evidence.",
+    "source": "~/.codex/skills/ultragoal/SKILL.md"
+  },
+  {
+    "name": "ultraqa",
+    "description": "Exercise runnable behavior with adversarial scenarios, bounded fixes, and cleanup evidence.",
+    "source": "~/.codex/skills/ultraqa/SKILL.md"
+  },
+  {
+    "name": "wiki",
+    "description": "Maintain a small searchable Markdown project knowledge base with evidence and provenance.",
+    "source": "~/.codex/skills/wiki/SKILL.md"
+  }
 ]

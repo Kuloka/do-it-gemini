@@ -1,0 +1,24 @@
+{
+  "version": "0.1.2",
+  "commit": "bc042d4b59fa35082e7b04903491d19fba8f272e",
+  "files": {
+    "ai-slop-cleaner/SKILL.md": "fe18c929ee952d30b5f63d3e204adba90209369c66dc2971ba3a9c1d7dfe2ab5",
+    "analyze/SKILL.md": "050f1beea28045b81f5b69cf7f3f3920e2748ba55b8802d7699ba8a90e0b62f8",
+    "autopilot/SKILL.md": "a35f25968eb02dfdd2d0e7433d2216d16d21f8c3a27a47e86940c43ab4a053b6",
+    "best-practice-research/SKILL.md": "9817101393ecee6b2eee5ec14e89a37f6332386aabe72dfa03279cd0afd8f5cf",
+    "cancel/SKILL.md": "73350459e8c18029ceda0ff38845e37f2cd296632cffafee8cdf3081d1509e58",
+    "code-review/SKILL.md": "2030e3bb12bfdd86b96806d144ec6bf334f76d1a77c099a3c03e02c500224eda",
+    "deep-interview/SKILL.md": "59dfd2b1e04ee4d01b3c922a4d6b6caf53b6e7cc4dc249a82145a8da914f76ba",
+    "design/SKILL.md": "687f215a3c54d551a4b1f5056eb87184aadcf1b282bb096f3a3cda5ede6ba7ff",
+    "doctor/SKILL.md": "6b29d803abed160814a963c7876b929ec7c755eeb5c8ce97fd4dd4e3e7eeb5c0",
+    "performance-goal/SKILL.md": "ad9d91105a72762707116a9d372738fbe07c7678c712aa6acbe7ea3644199fef",
+    "plan/SKILL.md": "d2694ba2b3547e009e24b429a6b467aabc43e7a1b355c844a7319dd79254e5cf",
+    "ralplan/SKILL.md": "4a47e9b1d05c8516ae3bd296aff0a347316afd6017f9a788747aa7603c1764a5",
+    "skill-creator/SKILL.md": "8180ba39eb98dccda1c62b5c26b92a1ba8598b25b29814abcd2236f1426352ba",
+    "skill-manager/SKILL.md": "4597822cb212d7f5ec4774fdb74c9a63fcac2c6139ed14fdce2d6a0415d867b4",
+    "team/SKILL.md": "a19603faad902efe5be9d8a24743b914b9fa3bdc8f35dc8091ce62222cffebb1",
+    "ultragoal/SKILL.md": "957446cd2b8fad82992739381c2c3309006461d4ec05e8ad170640a858a178f5",
+    "ultraqa/SKILL.md": "e505ab2465ab9591ec8ac57f479bfac84d4d0339bfa7a5061bdb0722d92bd84d",
+    "wiki/SKILL.md": "aa6ae5dc947cacb76c01a145a3726e9216d4776b30145134b44ae97b81cec67f"
+  }
+}

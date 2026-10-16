@@ -1,12 +1,13 @@
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
-import { mkdir, readFile, writeFile, access, readdir } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, access, lstat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import os from 'node:os';
 import { Store, safeName } from './store.js';
 import { loadCatalog, enabledSkills, buildContext } from './catalog.js';
 import { installGlobalSkills } from './global-skills.js';
+import { installSkillTrees, skillDigest } from './managed-skills.js';
 import { parseChatCommand, selectModel } from './chat-commands.js';
 import { findGemini, findAgy, installAgy, runNode, runExecutable, npmScript, apiReply, cliReply, agyReply } from './providers.js';
 
@@ -52,45 +53,60 @@ export function parseArgs(args) {
 }
 
 export async function installWorkspace(workspace, catalog, config) {
+  workspace = path.resolve(workspace);
+  const skills = enabledSkills(catalog, config);
+  const migration = JSON.parse(await readFile(path.join(root, 'migrations', '0.1.2-skills.json'), 'utf8'));
+  const commandsMigration = JSON.parse(await readFile(path.join(root, 'migrations', '0.1.2-workspace.json'), 'utf8'));
   const generated = path.join(workspace, '.gemini', 'do-it-gemini.md');
   const writes = [{ target: generated, content: await readFile(path.join(root, 'GEMINI.md')), label: 'context' }];
   const contextFile = path.join(workspace, 'GEMINI.md');
-  let existing = '';
-  try { existing = await readFile(contextFile, 'utf8'); } catch (error) { if (error.code !== 'ENOENT') throw error; }
-  // Our own root already has context. In other projects preserve the user's context.
-  const addImport = path.resolve(workspace) !== root && !existing.includes('@.gemini/do-it-gemini.md');
-  async function collect(directory, destination) {
-    for (const entry of await readdir(directory, { withFileTypes: true })) {
-      const source = path.join(directory, entry.name), target = path.join(destination, entry.name);
-      if (entry.isSymbolicLink()) throw new Error(`Skill symlinks are not supported: ${source}`);
-      if (entry.isDirectory()) await collect(source, target);
-      else if (entry.isFile()) writes.push({ target, content: await readFile(source), label: 'skill' });
+
+  async function inspect(target) {
+    try { return await lstat(target); }
+    catch (error) { if (error.code === 'ENOENT') return null; throw error; }
+  }
+  async function preflightFile(target, label) {
+    for (let directory = path.dirname(target); ; directory = path.dirname(directory)) {
+      const info = await inspect(directory);
+      if (info && (!info.isDirectory() || info.isSymbolicLink())) throw new Error('Conflicting workspace directory: ' + directory);
+      if (directory === path.dirname(directory)) break;
     }
+    const info = await inspect(target);
+    if (info && (!info.isFile() || info.isSymbolicLink())) throw new Error('Refusing to overwrite existing ' + label + ': ' + target);
+    return info;
   }
-  for (const skill of enabledSkills(catalog, config)) {
-    const directory = path.join(workspace, '.gemini', 'skills', skill.name);
-    await collect(path.dirname(skill.file), directory);
-    await collect(path.dirname(skill.file), path.join(workspace, '.agents', 'skills', skill.name));
-  }
+  const contextInfo = await preflightFile(contextFile, 'context');
+  const existing = contextInfo ? await readFile(contextFile, 'utf8') : '';
+  // Preserve project guidance and append our import only once outside this pack's root.
+  const addImport = workspace !== root && !existing.includes('@.gemini/do-it-gemini.md');
   const commands = path.join(workspace, '.gemini', 'commands', 'gmini');
-  for (const skill of enabledSkills(catalog, config)) {
-    const command = `description = ${JSON.stringify(skill.description)}\nprompt = ${JSON.stringify(`Use the ${skill.name} skill for this request. Read .gemini/skills/${skill.name}/SKILL.md first and follow it. User request: {{args}}`)}\n`;
-    const target = path.join(commands, `${skill.name}.toml`);
-    writes.push({ target, content: Buffer.from(command), label: 'command' });
+  for (const skill of skills) {
+    const command = 'description = ' + JSON.stringify(skill.description) + '\nprompt = ' + JSON.stringify('Use the ' + skill.name + ' skill for this request. Read .gemini/skills/' + skill.name + '/SKILL.md first and follow it. User request: {{args}}') + '\n';
+    writes.push({ target: path.join(commands, safeName(skill.name) + '.toml'), content: Buffer.from(command), label: 'command' });
   }
-  // Preflight every owned file before adding context imports or copying anything.
-  const missing = [];
+  // Preflight generated files first, then the helper preflights both native skill trees.
+  // A conflict in either group leaves context, commands and skills untouched.
+  const changed = [];
   for (const item of writes) {
-    try {
-      if (!(await readFile(item.target)).equals(item.content)) throw new Error(`Refusing to overwrite existing ${item.label}: ${item.target}`);
-    } catch (error) { if (error.code !== 'ENOENT') throw error; missing.push(item); }
+    const relative = path.relative(workspace, item.target).split(path.sep).join('/');
+    const info = await preflightFile(item.target, item.label);
+    if (!info) { changed.push({ ...item, before: null }); continue; }
+    const before = skillDigest(relative, await readFile(item.target));
+    if (before === skillDigest(relative, item.content)) continue;
+    if (item.label !== 'command' || before !== commandsMigration.files[relative]) throw new Error('Refusing to overwrite existing ' + item.label + ': ' + item.target);
+    changed.push({ ...item, before, relative });
   }
-  for (const item of missing) {
+  await installSkillTrees(skills, [path.join(workspace, '.gemini', 'skills'), path.join(workspace, '.agents', 'skills')], { legacyHashes: migration.files });
+  for (const item of changed) {
+    await preflightFile(item.target, item.label);
     await mkdir(path.dirname(item.target), { recursive: true });
-    await writeFile(item.target, item.content, { flag: 'wx' });
+    if (item.before !== null && skillDigest(item.relative, await readFile(item.target)) !== item.before) throw new Error('Workspace file changed during installation: ' + item.target);
+    await writeFile(item.target, item.content, { flag: item.before === null ? 'wx' : 'w' });
   }
   if (addImport) {
-    await writeFile(contextFile, `${existing}${existing ? '\n\n' : ''}@.gemini/do-it-gemini.md\n`);
+    await preflightFile(contextFile, 'context');
+    if (contextInfo && await readFile(contextFile, 'utf8') !== existing) throw new Error('Workspace context changed during installation: ' + contextFile);
+    await writeFile(contextFile, existing + (existing ? '\n\n' : '') + '@.gemini/do-it-gemini.md\n', { flag: contextInfo ? 'w' : 'wx' });
   }
 }
 

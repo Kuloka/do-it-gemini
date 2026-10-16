@@ -6,14 +6,14 @@
 
 <h1 align="center">do-it-gemini</h1>
 
-<p align="center">A persistent CMD mini chat with 18 engineering skills and three plugin packs.</p>
+<p align="center">A persistent CMD mini chat with 21 engineering and design skills across four plugin packs.</p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/do-it-gemini"><img src="https://img.shields.io/npm/v/do-it-gemini" alt="npm version"></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-%E2%89%A520-339933" alt="Node.js 20 or newer"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
-  <a href="#skills-and-plugin-packs"><img src="https://img.shields.io/badge/skills-18-orange" alt="18 skills"></a>
-  <a href="#skills-and-plugin-packs"><img src="https://img.shields.io/badge/plugin_packs-3-555" alt="3 plugin packs"></a>
+  <a href="#skills-and-plugin-packs"><img src="https://img.shields.io/badge/skills-21-orange" alt="21 skills"></a>
+  <a href="#skills-and-plugin-packs"><img src="https://img.shields.io/badge/plugin_packs-4-555" alt="4 plugin packs"></a>
   <a href="https://github.com/Kuloka/do-it-gemini"><img src="https://img.shields.io/github/stars/Kuloka/do-it-gemini" alt="GitHub stars"></a>
 </p>
 
@@ -130,7 +130,7 @@ not wrapper mini-chat slash commands.
 
 ## Skills and plugin packs
 
-All three packs are enabled by default. Plugins are declarative instruction packs,
+All four packs are enabled by default. Plugins are declarative instruction packs,
 not arbitrary JavaScript executables or automatically connected external services.
 
 | Pack | Included skills |
@@ -138,12 +138,45 @@ not arbitrary JavaScript executables or automatically connected external service
 | **developer** | [plan](skills/plan/SKILL.md), [deep-interview](skills/deep-interview/SKILL.md), [ralplan](skills/ralplan/SKILL.md), [autopilot](skills/autopilot/SKILL.md), [ultragoal](skills/ultragoal/SKILL.md), [design](skills/design/SKILL.md), [wiki](skills/wiki/SKILL.md), [skill-creator](skills/skill-creator/SKILL.md), [skill-manager](skills/skill-manager/SKILL.md), [doctor](skills/doctor/SKILL.md), [cancel](skills/cancel/SKILL.md), [team](skills/team/SKILL.md) |
 | **quality** | [code-review](skills/code-review/SKILL.md), [ai-slop-cleaner](skills/ai-slop-cleaner/SKILL.md), [ultraqa](skills/ultraqa/SKILL.md), [performance-goal](skills/performance-goal/SKILL.md) |
 | **research** | [analyze](skills/analyze/SKILL.md), [best-practice-research](skills/best-practice-research/SKILL.md) |
+| **design** | [design](skills/design/SKILL.md), [frontend-design](skills/frontend-design/SKILL.md), [design-system](skills/design-system/SKILL.md), [design-review](skills/design-review/SKILL.md) |
+
+The developer pack also includes these four design skills so existing installations
+gain the expanded workflows when updated. Shared skills load once.
 
 Use developer workflows for requirements, plans, implementation, and maintained
 project knowledge; quality workflows for review, cleanup, adversarial QA, and measured
 optimization; research workflows for evidence-backed investigation and current guidance.
 Delegation and independent review depend on actual native provider capabilities.
 Solo review passes are labeled self-review; skills do not invent missing runtime tools.
+
+### Design workflows
+
+Choose the skill that matches the result you need:
+
+| Skill | Result |
+|---|---|
+| `design` | Product-specific direction, hierarchy, visual language and a buildable design contract; continues into implementation when requested |
+| `frontend-design` | Working interface with deliberate typography, layout, real interaction states and responsive behavior |
+| `design-system` | Semantic tokens and reusable components that fit the existing product |
+| `design-review` | Ranked visual and usability findings, evidence and concrete corrections |
+
+```text
+/skill frontend-design
+Build a seed-library website with inventory search and a workshop signup demo.
+/skill design-review
+Review the current page at desktop and mobile widths. Fix the highest-impact issues.
+```
+
+In native Gemini or Antigravity, ask explicitly to use the installed skill. Gemini
+workspace setup also provides `/gmini:frontend-design` and `/gmini:design-review`.
+Resources cover composition, typography, color, imagery, design tokens, reflow,
+focus, keyboard interaction and browser QA. Required references are included in
+explicit wrapper requests, including API mode.
+
+Browser and image tools depend on the active host and its permissions. Antigravity
+CLI/App browser delegation requires explicit `/browser` activation; a skill cannot
+grant it. API-only mode can provide code and critique supplied evidence, but cannot
+render or operate a browser. See [native capabilities](skills/design/references/native-capabilities.md).
 
 ## Providers and limits
 
@@ -167,10 +200,17 @@ with every request; use `/new` to keep unrelated tasks and long histories separa
 ## Storage and your own project
 
 The terminal interface is in English. Model responses follow your request's language.
-Bootstrap also installs native skills into both `%USERPROFILE%\.gemini\skills`
-and `%USERPROFILE%\.gemini\antigravity-cli\skills`. They are available when you
-launch Gemini or Antigravity separately. Existing modified skills are preserved;
-conflicts stop installation before replacing files. To install explicitly:
+Bootstrap also installs native skills and their resources into:
+
+- `%USERPROFILE%\.gemini\skills` — Gemini CLI.
+- `%USERPROFILE%\.gemini\antigravity-cli\skills` — Antigravity CLI.
+- `%USERPROFILE%\.gemini\config\skills` — Antigravity App and IDE.
+
+They are available when you launch the corresponding native product separately.
+Unchanged managed files and recognized 0.1.2 skills update safely; user-edited or
+unrecognized conflicting files stop installation before replacement. Receipts track
+installed content without touching authentication. Restart the native session after
+updating so it can discover new skills. To install or update explicitly:
 
 ```cmd
 npx --yes --package=do-it-gemini@latest -- gmini setup --global
@@ -234,8 +274,9 @@ npm.cmd run check
 ```
 
 Tests cover persistence, provider protocols, errors, plugin selection, subprocess
-launching, and workspace setup without paid API calls. The catalog/syntax check
-validates all included skills and packs. The wrapper has no third-party runtime
+launching, resource inclusion, managed upgrades and workspace setup without paid
+API calls. The check validates syntax, manifests, provenance and bundled resource
+links. The wrapper has no third-party runtime
 libraries; installed native providers are separate products.
 
 See [the full usage manual](docs/usage.md) for detailed provider behavior, custom

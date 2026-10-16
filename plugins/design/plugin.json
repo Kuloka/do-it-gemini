@@ -1,0 +1,7 @@
+{
+  "name": "design",
+  "version": "1.0.0",
+  "description": "Product direction, distinctive frontend implementation, design systems and evidence-based visual review.",
+  "skills": ["design", "frontend-design", "design-system", "design-review"],
+  "instructions": "For UI work, establish the user's task and a coherent direction, implement the requested experience, then inspect rendered states with actually available tools. Reuse existing systems, preserve user references and native permissions, and distinguish screenshots from interaction evidence. Do not stop at a design brief when a build was requested."
+}

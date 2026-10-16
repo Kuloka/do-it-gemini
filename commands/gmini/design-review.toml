@@ -1,0 +1,2 @@
+description = "Critique an interface or screenshot against its task and design direction, with ranked visual, responsive, interaction, and accessibility findings supported by evidence."
+prompt = "Use the design-review skill for the following request. Activate it with the actual available skill tool, then follow its instructions. User request: {{args}}"
