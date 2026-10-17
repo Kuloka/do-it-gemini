@@ -1,0 +1,12 @@
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--foreground, light-dark(#25272b, #e4e6eb)); background: var(--background, light-dark(#fff, #191a1e)); }
+main { padding: 18px 16px; width: 100%; max-width: 480px; }
+.row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; font-size: 13px; line-height: 1.5; }
+output { flex-shrink: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+.track { height: 6px; overflow: hidden; border-radius: 3px; margin-top: 9px; background: var(--muted, light-dark(#e9ebef, #34363d)); }
+#context-fill { height: 100%; width: 0; background: var(--primary, light-dark(#285cbd, #87adff)); }
+.track[data-level="high"] #context-fill { background: light-dark(#a34e09, #f5b869); }
+.track[data-level="full"] #context-fill { background: light-dark(#b32631, #ff949d); }
+.limit { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--border, light-dark(#e1e3e8, #34363d)); }
+@media (forced-colors: active) { .track { border: 1px solid CanvasText; } #context-fill { background: Highlight; } }

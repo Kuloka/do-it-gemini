@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Usage</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="panel.js" defer></script>
+</head>
+<body>
+  <main aria-label="Conversation usage">
+    <section aria-labelledby="context-label">
+      <div class="row"><span id="context-label">Context</span><output id="context-value">—</output></div>
+      <div id="context-bar" class="track" role="progressbar" aria-labelledby="context-label" aria-valuemin="0" aria-valuemax="100" aria-valuetext="Unavailable"><div id="context-fill"></div></div>
+    </section>
+    <div class="row limit"><span>Limit remaining</span><output id="limit-value">—</output></div>
+  </main>
+</body>
+</html>

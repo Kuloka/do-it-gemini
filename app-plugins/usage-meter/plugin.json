@@ -1,0 +1,6 @@
+{
+  "name": "do-it-gemini-usage",
+  "displayName": "Usage",
+  "description": "Context usage and remaining model quota in a small Antigravity App panel.",
+  "version": "0.1.0"
+}

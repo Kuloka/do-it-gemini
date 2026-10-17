@@ -51,6 +51,22 @@ and the [official Antigravity installation guide](https://antigravity.google/doc
 
 ## Shell commands
 
+### Graphical Antigravity App panel
+
+Install a small native panel with **context usage** and **remaining model quota**:
+
+```cmd
+npx -y do-it-gemini@latest app install
+```
+
+In Antigravity App, open **Overview > Plugins > Usage**; enable it in
+Customizations if needed. Tested in App 2.24.0. Restart the Usage sidecar after
+updates. If a new installation does not appear, restart the App.
+
+Readings come from local App metadata; unavailable values show `—`. The limit is
+for the last invocation's model, not a combined account percentage. Internal App
+read APIs can change between releases. [Installation, meanings and compatibility](docs/app-usage-panel.md).
+
 Use either the `do-it-gemini` executable or its `gmini` alias. To run an explicit
 command without a global installation:
 
@@ -71,6 +87,7 @@ or available in your PATH. In a source checkout, use `gmini.cmd` instead.
 | `native` | Open the selected native CLI interactively in the current console |
 | `setup` | Prepare data, workspace context, skills, and Gemini custom commands |
 | `setup --global` | Also install skills in the user folders of Gemini and Antigravity |
+| `app install` | Install or update the graphical Antigravity App usage panel |
 | `setup --install-cli` | Also install legacy Gemini CLI 0.63.0 locally; supported legacy access is required |
 | `bootstrap` | Prepare the workspace, install Antigravity on Windows if needed, and open chat |
 | `doctor` | Report data paths, skill/plugin counts, and discovered providers |

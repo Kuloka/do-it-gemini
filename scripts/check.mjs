@@ -37,7 +37,7 @@ for (const skill of catalog.skills.values()) {
     }
   }
 }
-for (const directory of ['bin', 'src', 'scripts', 'tests']) for await (const file of files(path.join(root, directory))) {
+for (const directory of ['bin', 'src', 'scripts', 'tests', 'app-plugins']) for await (const file of files(path.join(root, directory))) {
   if (!/\.(?:js|mjs)$/.test(file)) continue;
   const result = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
   if (result.status !== 0) throw new Error(result.stderr);

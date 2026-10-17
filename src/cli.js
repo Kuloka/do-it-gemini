@@ -7,6 +7,7 @@ import os from 'node:os';
 import { Store, safeName } from './store.js';
 import { loadCatalog, enabledSkills, buildContext } from './catalog.js';
 import { installGlobalSkills } from './global-skills.js';
+import { installAppPlugin } from './app-plugin.js';
 import { installSkillTrees, skillDigest } from './managed-skills.js';
 import { parseChatCommand, selectModel } from './chat-commands.js';
 import { findGemini, findAgy, installAgy, runNode, runExecutable, npmScript, apiReply, cliReply, agyReply } from './providers.js';
@@ -20,6 +21,7 @@ gmini ask "message"              one request with saved history
 gmini native                  interactive native CLI with tools
 gmini setup [--install-cli]    prepare data and workspace skills
 gmini setup --global          install skills for Gemini and Antigravity globally
+gmini app install             install the graphical App usage panel
 gmini bootstrap               install a provider, prepare the workspace and open chat
 gmini doctor                  check installation
 gmini skills                  list enabled skills
@@ -115,6 +117,12 @@ export async function main(argv = process.argv.slice(2)) {
   const installed = root.split(path.sep).includes('node_modules');
   const command = positional[0] || (installed ? 'bootstrap' : 'chat');
   if (flags.help || command === 'help') { console.log(HELP); return; }
+  if (command === 'app') {
+    if (positional[1] !== 'install' || positional.length !== 2) throw new Error('Use gmini app install');
+    const destination = await installAppPlugin();
+    console.log(`Usage panel installed: ${destination}\nIn Antigravity App: Overview > Plugins > Usage. Enable it in Customizations if needed.\nAfter an update, restart the Usage sidecar from its settings. If it is missing, restart the App.\nOnly context usage and remaining model limit are shown.`);
+    return;
+  }
   const persistentHome = process.env.LOCALAPPDATA || path.join(os.homedir(), '.local', 'share');
   const defaultData = installed ? path.join(persistentHome, 'do-it-gemini', 'data') : path.join(root, 'data');
   const store = new Store(flags.data || process.env.GMINI_DATA_DIR || defaultData);
